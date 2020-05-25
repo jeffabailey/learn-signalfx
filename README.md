@@ -25,7 +25,7 @@ printf <YourToken> > config/signalfx-access-token.txt
 ## Build the container
 
 ```bash
-docker build --rm -t learn-signalfx --build-arg signalfx_api_token=<Your API Key> --build-arg signalfx_realm=<Your Realm> .
+docker build --rm -t learn-signalfx --build-arg signalfx_api_token=$(cat config/signalfx-access-token.txt) --build-arg signalfx_realm=<YourRealm> .
 ```
 
 ## Run the container

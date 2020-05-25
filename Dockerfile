@@ -3,16 +3,16 @@ FROM debian:stretch
 # Install packages
 RUN apt-get update && apt install -y postgresql postgresql-client dos2unix curl openssh-server vim netcat sudo
 
-# If someone edits on windows let's fix the files and make them executable
-COPY docker-entrypoint.sh /var/lib/postgresql/docker-entrypoint.sh
+# Copy Script
+COPY scripts/docker-entrypoint.sh /var/lib/postgresql/docker-entrypoint.sh
+COPY scripts/setup.sql /var/lib/postgresql/setup.sql
+COPY scripts/tcp-port-wait.sh /var/lib/postgresql/tcp-port-wait.sh
 
+# Copy Config Files
+COPY config/agent.yml /var/lib/postgresql/agent.yml
 COPY config/signalfx-ingest-url.txt /var/lib/postgresql/
 COPY config/signalfx-api-url.txt /var/lib/postgresql/
 COPY config/signalfx-access-token.txt /var/lib/postgresql/
-
-COPY setup.sql /var/lib/postgresql/setup.sql
-COPY tcp-port-wait.sh /var/lib/postgresql/tcp-port-wait.sh
-COPY agent.yml /var/lib/postgresql/agent.yml
 
 RUN curl -L https://github.com/signalfx/signalfx-agent/releases/download/v5.2.1/signalfx-agent-5.2.1.tar.gz --output /var/lib/postgresql/signalfx-agent-5.2.1.tar.gz
 RUN cd /var/lib/postgresql && tar -xzvf /var/lib/postgresql/signalfx-agent-5.2.1.tar.gz
