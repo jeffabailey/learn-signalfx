@@ -16,5 +16,5 @@ This repository contains the following.
 1. A dashboard
 1. The following charts
     * CPU
-    * Network
-    * Errors
+    * Memory
+    * Postgresql Query Time
