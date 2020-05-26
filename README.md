@@ -25,11 +25,17 @@ printf <YourToken> > config/signalfx-access-token.txt
 ## Build the container
 
 ```bash
-docker build --rm -t learn-signalfx --build-arg signalfx_api_token=$(cat config/signalfx-access-token.txt) --build-arg signalfx_realm=<YourRealm> .
+docker build --rm --name learn-signalfx --build-arg signalfx_access_token=$(cat config/signalfx-access-token.txt) --build-arg signalfx_realm=<YourRealm> .
 ```
 
 ## Run the container
 
 ```bash
-docker run --rm -it learn-signalfx /bin/bash
+docker run --rm -t learn-signalfx -it learn-signalfx /bin/bash
+```
+
+## Attach to a running container
+
+```bash
+docker exec -it learn-signalfx /bin/bash
 ```

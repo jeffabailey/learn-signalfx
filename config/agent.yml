@@ -1,5 +1,6 @@
 ---
 # *Required* The access token for the org that you wish to send metrics to.
+hostname: learn-signalfx
 signalFxRealm: us1
 signalFxAccessToken: {"#from": "signalfx-access-token.txt"}
 ingestUrl: {"#from": "signalfx-ingest-url.txt"}
@@ -10,7 +11,7 @@ intervalSeconds: 10
 
 logging:
   # Valid values are 'debug', 'info', 'warning', and 'error'
-  level: debug
+  level: info
 
 # observers are what discover running services in the environment
 observers:

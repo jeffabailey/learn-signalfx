@@ -14,7 +14,10 @@ COPY config/signalfx-ingest-url.txt /var/lib/postgresql/
 COPY config/signalfx-api-url.txt /var/lib/postgresql/
 COPY config/signalfx-access-token.txt /var/lib/postgresql/
 
+# Get the signalfx-agent library
 RUN curl -L https://github.com/signalfx/signalfx-agent/releases/download/v5.2.1/signalfx-agent-5.2.1.tar.gz --output /var/lib/postgresql/signalfx-agent-5.2.1.tar.gz
+
+# Extract the signalfx-agent library
 RUN cd /var/lib/postgresql && tar -xzvf /var/lib/postgresql/signalfx-agent-5.2.1.tar.gz
 
 # Prep the docker entrypoint, if on windows fix up the file
@@ -31,7 +34,7 @@ RUN usermod -a -G sudo postgres
 EXPOSE  5432
 
 USER postgres
-RUN cd ~
+RUN cd ~postgres
 
 # Args & environment
 ARG signalfx_realm

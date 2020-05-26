@@ -19,10 +19,12 @@ sudo service postgresql start && /var/lib/postgresql/tcp-port-wait.sh 127.0.0.1 
 
 # Create the db and set it up
 sudo su -c "psql -U postgres -tc \"SELECT 1 FROM pg_database WHERE datname = 'learnsignalfx'\" | grep -q 1 || psql -U postgres -c \"create database learnsignalfx\"" postgres &&
-sudo su -c "psql -f ~postgres/setup.sql" postgres && 
-sudo service ssh start &&
+psql -f ~postgres/setup.sql
+
+# The signalfx-agent needs a host entry
+sudo su -c "echo '127.0.0.1 learn-signalfx' >> /etc/hosts" root
 
 # Start the SFX agent
-sudo su -c "cd ~ && ./signalfx-agent/bin/signalfx-agent -config ./agent.yml" postgres &&
+cd ~ && ./signalfx-agent/bin/signalfx-agent -config ./agent.yml &&
 
 exec "$@"

@@ -1,7 +1,7 @@
 do
 $do$
 begin
-create extension pg_stat_statements;
+create extension if not exists pg_stat_statements;
 if not exists (
   select 1
   from information_schema.schemata
