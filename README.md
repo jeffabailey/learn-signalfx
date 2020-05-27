@@ -1,8 +1,6 @@
 # Learn Signal FX
 
-TODO Link to the blog when it's published
-
-This repository is a companion to this blog post. If you follow along there you should be able to make use of it.
+This repository is a companion to [this blog post](https://jeffbailey.us/blog/2020/05/24/learn-signalfx/). If you follow along there you should be able to make use of it.
 
 Enable SignalFx monitoring for a Postgresql database.
 
