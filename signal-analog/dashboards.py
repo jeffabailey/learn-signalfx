@@ -19,9 +19,6 @@ query_time = TimeSeriesChart().with_name('Query Time').with_program(program)
 program = Data('memory.utilization', filter=filters).publish()
 memory_chart = TimeSeriesChart().with_name('Memory').with_program(program)
 
-program = Data('memory.utilization', filter=filters).publish()
-memory_chart = TimeSeriesChart().with_name('Memory').with_program(program)
-
 dashboard1 = Dashboard().with_name('Dashboard 1').with_charts(query_time, cpu_chart, memory_chart)
 
 dashboard_group = DashboardGroup() \
